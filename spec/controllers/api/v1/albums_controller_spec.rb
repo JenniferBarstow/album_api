@@ -2,11 +2,10 @@ require "rails_helper"
 require "spec_helper"
 
 RSpec.describe Api::V1::AlbumsController do
+
   describe 'with existing albums' do
-      let!(:album1) { FactoryGirl.create(:album, name: "Year of Hibernation",
-                              artist_id: 1,
-                              genre: "rock",
-                              year: 2014) }
+
+    let!(:album1) { FactoryGirl.create(:album) }
 
     describe 'get index' do
       it 'returns a list of all albums' do
@@ -16,7 +15,7 @@ RSpec.describe Api::V1::AlbumsController do
         albums = JSON.parse(response.body)
 
         expect(response.status).to eq(200)
-        expect(albums.first["name"]).to eq("Year of Hibernation")
+        expect(albums.first["name"]).to eq(album1.name)
       end
     end
 
@@ -27,7 +26,7 @@ RSpec.describe Api::V1::AlbumsController do
         album = JSON.parse(response.body)
     
         expect(response.status).to eq(200)
-        expect(album["name"]).to eq("Year of Hibernation")
+        expect(album["name"]).to eq(album1.name)
       end
     end
 
@@ -71,8 +70,6 @@ RSpec.describe Api::V1::AlbumsController do
         expect(Album.count).to eq(1)
       end
     end
-  end
-
+  end 
   
-
 end

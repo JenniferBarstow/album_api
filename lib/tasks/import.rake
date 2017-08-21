@@ -3,7 +3,7 @@ require 'csv'
 namespace :db do
 
   desc "Import Albums from csv"
-  task albums: :environment do  
+  task load_albums: :environment do  
 
     csv_text = File.read('db/albums.csv', headers: true, encoding: 'iso-8859-1:utf-8')
     csv = CSV.parse(csv_text, :headers => true)
