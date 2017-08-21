@@ -1,3 +1,5 @@
+== README
+
 ## Album API ## 
 
 **An API built using Rails-4.2.1 with the following features:**
